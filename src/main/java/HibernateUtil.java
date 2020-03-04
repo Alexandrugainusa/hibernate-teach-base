@@ -19,11 +19,18 @@ public class HibernateUtil {
                 settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
                 settings.put(Environment.URL, "jdbc:mysql://localhost:3306/scoala?serverTimezone=UTC");
                 settings.put(Environment.USER, "root");
-                settings.put(Environment.PASS, "rootroot");
+                settings.put(Environment.PASS, "root");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
                 configuration.setProperties(settings);
+
+                configuration.addAnnotatedClass(Elev.class); // pentru entitate
+                configuration.addAnnotatedClass(Clasa.class);
+                configuration.addAnnotatedClass(Materie.class);
+                configuration.addAnnotatedClass(Profesor.class);
+                configuration.addAnnotatedClass(Nota.class);
+                configuration.addAnnotatedClass(ProfesorMaterie.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
